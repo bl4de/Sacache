@@ -6,28 +6,28 @@ Simple cache implementation for JavaScript applications
 Usage
 =====
 
-**Sacahce.add(key, value)**
+**Sacache.add(key, value)**
 
 Adds new value to Sacache.storage identified by key
 
-**Sacahce.exists(key)**
+**Sacache.exists(key)**
 
 Check if particular key exists in Sacache.storage
 
-**Sacahce.get(key)**
+**Sacache.get(key)**
 
 Returns value from Sacache.storage identified by key
 
-**Sacahce.clear()**
+**Sacache.clear()**
 
-Clears Sacahce.storage
+Clears Sacache.storage
 
-**Sacahce.countItems()**
+**Sacache.countItems()**
 
 Returns current Sacache.storage items counter
 
-**Sacahce.autoclear()**
+**Sacache.autoclear()**
 
-Method for auto-cleaning Sacahce.storage when Storage.max_cache_size exceeded
+Method for auto-cleaning Sacache.storage when Storage.max_cache_size exceeded
 
 
