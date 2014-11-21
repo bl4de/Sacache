@@ -1,55 +1,63 @@
 /**
  * Created by rafal.janicki on 2014-11-14.
  */
-var Sacache = {
-    max_cache_size: 100
-};
+var Sacache = Sacache || {
+    // max Sacache size; when exceeded, autoclear() is executed
+    max_cache_size: 100,
 
-Sacache.storage = [];
+    // in-memory storage array
+    storage: [],
 
-Sacache.add = function (key, val) {
-    this.autoclear();
+    // add new value identified by key to storage
+    add: function (key, val) {
+        this.autoclear();
 
-    if (!this.exists(key)) {
-        this.storage.push({
-            storageKey: key,
-            storageValue: val
-        });
-    }
-};
+        if (!this.exists(key)) {
+            this.storage.push({
+                storageKey: key,
+                storageValue: val
+            });
+        }
+    },
 
-Sacache.get = function (key) {
-    var _filter = function (item) {
-            return key === item['storageKey'];
-        },
-        _storageItem;
+    // get value identified by key
+    get: function (key) {
+        var _filter = function (item) {
+                return key === item['storageKey'];
+            },
+            _storageItem;
 
-    if (this.exists(key)) {
-        _storageItem = this.storage.filter(_filter);
-    }
-    return _storageItem[0]['storageValue'];
-};
+        if (this.exists(key)) {
+            _storageItem = this.storage.filter(_filter);
+        }
+        return _storageItem[0]['storageValue'];
+    },
 
-Sacache.exists = function (key) {
-    var _exists,
-        _find = function (item) {
-            return key === item['storageKey'];
-        };
+    // check if particular key exists in storage
+    exists: function (key) {
+        var _exists,
+            _find = function (item) {
+                return key === item['storageKey'];
+            };
 
-    _exists = this.storage.filter(_find);
-    return Boolean(_exists.length > 0);
-};
+        _exists = this.storage.filter(_find);
+        return Boolean(_exists.length > 0);
+    },
 
-Sacache.clear = function () {
-    this.storage = [];
-};
+    // clears storage
+    clear: function () {
+        this.storage = [];
+    },
 
-Sacache.countItems = function () {
-    return this.storage.length;
-};
+    // return storage size
+    countItems: function () {
+        return this.storage.length;
+    },
 
-Sacache.autoclear = function () {
-    if (this.storage.length > this.max_cache_size) {
-        this.clear();
+    // clears storage when max_cache_size exceeded
+    autoclear: function () {
+        if (this.storage.length > this.max_cache_size) {
+            this.clear();
+        }
     }
 };
